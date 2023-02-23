@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "9HrV1zRYylmFN4WrwgcbIphZiEfJjsR2O1PSgQ1ht8b6KJrMR/qIwYY6SbksIkbk8eJcvUuH8ZLvQb4Y4UIhfA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\andin\\Desktop\\blockbuster-compass\\bcompass\\bcompass.iOS\\bcompass.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\andin\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\andin\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
+    "C:\\Users\\andin\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512"
+  ],
+  "logs": []
+}
