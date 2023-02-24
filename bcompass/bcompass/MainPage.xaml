@@ -3,51 +3,91 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:bcompass"
              x:Class="bcompass.MainPage">
-    <StackLayout>
-    <StackLayout.BindingContext>
-        <local:BCompassViewModel/>
-    </StackLayout.BindingContext>
-
-        <Frame BackgroundColor="#234899" Padding="24" CornerRadius="0">
-            <Label Text="Blockbuster :3" HorizontalTextAlignment="Center" TextColor="#fcc139" FontSize="36"/>
-        </Frame>
-        <Label FontSize="16" Padding="30,10,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                        <Span Text="Blockbuster Location: "/>
-                        <Span x:Name="BBLocation" Text="LOC" FontAttributes="Bold"/>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-        <Label FontSize="16" Padding="30,10,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                        <Span Text="Current Location: "/>
-                        <Span x:Name="Location" Text=":3c" FontAttributes="Bold"/>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-        <Label FontSize="16" Padding="30,10,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Distance from BB: "/>
-                    <Span x:Name="BBDist" Text=":3c" FontAttributes="Bold"/>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-        <Label FontSize="16" Padding="30,10,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                        <Span Text="Direction to BB: "/>
-                        <Span x:Name="DirToBB" Text=":3c" FontAttributes="Bold"/>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+	<ContentPage.BindingContext>
+		<local:BCompassViewModel/>
+	</ContentPage.BindingContext>
+    <AbsoluteLayout>
+        <Image
+               AbsoluteLayout.LayoutBounds="0.3, 1.1, .85, .8"
+               AbsoluteLayout.LayoutFlags="All"
+               Source="bg.png"
+               />
         <Image
                x:Name="CompassDisplay"
-               Margin="10"
-               Source="compass.png"
+               AbsoluteLayout.LayoutBounds="0.3, .65, .85, .34"
+               AbsoluteLayout.LayoutFlags="All"
+               Source="compasspp.png"
                Rotation="{Binding CompassRotation}"
-               HeightRequest="256" />    
-    </StackLayout>
+               />
+        <Image
+               x:Name="Barcode"
+               AbsoluteLayout.LayoutBounds="0.90, 0.021, .4, .1"
+               AbsoluteLayout.LayoutFlags="All"
+               Source="barcode.png"
+               />
+        <Label 
+            x:Name="AA"
+            AbsoluteLayout.LayoutBounds="0.5, 0.15, .95, 0.07"
+            AbsoluteLayout.LayoutFlags="All"
+            Text="*Make it a Blockbuster Hike" 
+            FontFamily="Bahnschrift"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Center" 
+            TextColor="Black" 
+            FontSize="20" 
+            />
+        
+        <Label 
+            AbsoluteLayout.LayoutBounds="0.90, 0.015, .4, .1"
+            AbsoluteLayout.LayoutFlags="All"
+            Text="*44421211813" 
+            FontFamily="Bahnschrift"
+            HorizontalTextAlignment="Center" 
+            TextColor="Black" 
+            FontSize="18" 
+            />
+
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0.05, 0.00, .6, 0.05"
+            AbsoluteLayout.LayoutFlags="All"
+            Margin="15"
+            Spacing="1">
+            <Label
+            Text="You are currently" 
+            FontFamily="Bahnschrift"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Left" 
+            TextColor="Black" 
+            FontSize="14" 
+            />
+            <Label
+            Text="{Binding DistanceFromBBText}" 
+            FontFamily="Bahnschrift"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Left" 
+            TextColor="Black" 
+            FontSize="16" 
+            />
+            <Label
+            Text="your nearest Blockbuster" 
+            FontFamily="Bahnschrift"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Left" 
+            TextColor="Black" 
+            FontSize="14" 
+            />
+        </StackLayout>
+        
+        <Label 
+            x:Name="SideText"
+            AbsoluteLayout.LayoutBounds="-0.385, .62, 1.5, .04"
+            AbsoluteLayout.LayoutFlags="All"
+            Text="*Blockbuster Compass" 
+            FontFamily="Bahnschrift"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Center" 
+            TextColor="Black" 
+            FontSize="24" 
+            Rotation="-90"/>
+    </AbsoluteLayout>
 </ContentPage>
