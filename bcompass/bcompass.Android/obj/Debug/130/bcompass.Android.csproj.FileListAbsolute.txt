@@ -631,3 +631,4 @@ C:\Users\andin\Desktop\blockbuster-compass\bcompass\bcompass.Android\obj\Debug\1
 C:\Users\andin\Desktop\blockbuster-compass\bcompass\bcompass.Android\obj\Debug\130\stamp\_GenerateJavaStubs.stamp
 C:\Users\andin\Desktop\blockbuster-compass\bcompass\bcompass.Android\obj\Debug\130\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\andin\Desktop\blockbuster-compass\bcompass\bcompass.Android\obj\Debug\130\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\andin\Desktop\blockbuster-compass\bcompass\bcompass.Android\obj\Debug\130\res\drawable\compass.png
