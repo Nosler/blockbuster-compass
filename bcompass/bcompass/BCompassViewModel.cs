@@ -1,9 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
+using System.IO;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
+using CsvHelper;
 
 namespace bcompass
 {
@@ -16,7 +19,7 @@ namespace bcompass
         Location currentLocation = new Location(0, 0);
         private string _distanceFromBBText = "";
         private double _compassRotation = 0;
-        
+
         public string DistanceFromBBText
         {
             get => _distanceFromBBText;
@@ -43,11 +46,31 @@ namespace bcompass
             }
         }
 
+        public void printHello()
+        {
+            Console.WriteLine("hello");
+        }
+
+        public Message[] ReadMessagesFromFile()
+        {
+            using (var reader = new StreamReader("m.csv"))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var records = csv.GetRecords<DistanceMessage>();
+                Console.Write(records);
+            }
+            return null;
+        }
+         
+
         public void OnPropertyChanged([CallerMemberName] string name = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
         public BCompassViewModel()
         {
+            var records = this.ReadMessagesFromFile();
+            this.printHello();
+
             if (!Compass.IsMonitoring)
                 Compass.Start(SensorSpeed.UI);
             Compass.ReadingChanged += Compass_ReadingChanged;
@@ -120,5 +143,19 @@ namespace bcompass
             Debug.Write(hMagBB - hMagNorth);
             return hMagBB;
         }
+    }
+
+    public abstract class Message
+    {
+        public string text;
+        public void print()
+        {
+            Console.WriteLine(text);
+        }
+    }
+
+    public class DistanceMessage : Message
+    {
+        public double maxDist;
     }
 }
