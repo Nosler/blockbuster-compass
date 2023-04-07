@@ -39,10 +39,6 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "dependencies": {
-            "CsvHelper": {
-              "target": "Package",
-              "version": "[30.0.1, )"
-            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",

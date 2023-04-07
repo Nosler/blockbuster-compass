@@ -1,11 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "3sZPQBoDSthEJonWLgEvvehjKmEZDuKUyjJGL7j3Q4dfHUkqd+JIt+8znJcu//TLzK0U6n35o+Lx2inBfzlqUQ==",
+  "dgSpecHash": "M0AysOyk7Nsc6QN32HYuKky96z0J0bAGwM6ZH8VE2hmZ6dkSvNDUFE8d/WNI+FSzfELxH79Toj6A4GIUejPd+Q==",
   "success": true,
   "projectFilePath": "/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass.Android/bcompass.Android.csproj",
   "expectedPackageFiles": [
-    "/Users/alexmcknight/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512",
-    "/Users/alexmcknight/.nuget/packages/microsoft.csharp/4.3.0/microsoft.csharp.4.3.0.nupkg.sha512",
     "/Users/alexmcknight/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
     "/Users/alexmcknight/.nuget/packages/xamarin.androidx.activity/1.2.4.1/xamarin.androidx.activity.1.2.4.1.nupkg.sha512",
     "/Users/alexmcknight/.nuget/packages/xamarin.androidx.annotation/1.2.0.1/xamarin.androidx.annotation.1.2.0.1.nupkg.sha512",

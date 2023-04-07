@@ -17,7 +17,8 @@ C:/Users/andin/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstanda
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/bin/Debug/netstandard2.0/bcompass.dll
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/bin/Debug/netstandard2.0/ref/bcompass.dll
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/bin/Debug/netstandard2.0/bcompass.pdb
-/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/bcompass.csproj.AssemblyReference.cache
+/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/bin/Debug/netstandard2.0/Mono.Android.dll
+/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/bin/Debug/netstandard2.0/Mono.Android.pdb
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/bcompass.GeneratedMSBuildEditorConfig.editorconfig
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/App.xaml.g.cs
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/MainPage.xaml.g.cs
@@ -25,6 +26,8 @@ C:/Users/andin/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstanda
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/bcompass.AssemblyInfo.cs
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/bcompass.csproj.CoreCompileInputs.cache
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/XamlC.stamp
+/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/bcompass.csproj.CopyComplete
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/bcompass.dll
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/ref/bcompass.dll
 /Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/bcompass.pdb
+/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/Debug/netstandard2.0/bcompass.csproj.AssemblyReference.cache

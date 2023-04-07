@@ -1,11 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "LGYVl2GbaxMXKo3LozGPiPM8y1c8+JxYptmlvWbp3/qBDAKeXtEPdxzhdjBRdoYGqAfF/M4bCZzW+UKkC66atA==",
+  "dgSpecHash": "bvDbL+wmlU4ZBOvvabss4uFVjX/XBuG5HqN4MwHkJXuOiMEvmYMJVlynsOXxGq1b7Igcd5OIsG1fnqUPb9gS7w==",
   "success": true,
   "projectFilePath": "/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass.iOS/bcompass.iOS.csproj",
   "expectedPackageFiles": [
-    "/Users/alexmcknight/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512",
-    "/Users/alexmcknight/.nuget/packages/microsoft.csharp/4.3.0/microsoft.csharp.4.3.0.nupkg.sha512",
     "/Users/alexmcknight/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
     "/Users/alexmcknight/.nuget/packages/xamarin.essentials/1.7.5/xamarin.essentials.1.7.5.nupkg.sha512",
     "/Users/alexmcknight/.nuget/packages/xamarin.forms/5.0.0.2578/xamarin.forms.5.0.0.2578.nupkg.sha512"

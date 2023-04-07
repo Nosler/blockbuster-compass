@@ -36,10 +36,6 @@
       "frameworks": {
         "xamarinios10": {
           "dependencies": {
-            "CsvHelper": {
-              "target": "Package",
-              "version": "[30.0.1, )"
-            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.7.5, )"
@@ -98,10 +94,6 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "dependencies": {
-            "CsvHelper": {
-              "target": "Package",
-              "version": "[30.0.1, )"
-            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",

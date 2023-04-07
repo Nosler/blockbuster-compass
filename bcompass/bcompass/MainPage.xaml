@@ -29,7 +29,7 @@
             x:Name="AA"
             AbsoluteLayout.LayoutBounds="0.5, 0.15, .95, 0.07"
             AbsoluteLayout.LayoutFlags="All"
-            Text="*Make it a Blockbuster Hike" 
+            Text="Be Kind, Rewind" 
             FontFamily="Bahnschrift"
             FontAttributes="Bold"
             HorizontalTextAlignment="Center" 

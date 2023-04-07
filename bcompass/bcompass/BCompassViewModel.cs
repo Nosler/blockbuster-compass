@@ -6,7 +6,6 @@ using System.IO;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
-using CsvHelper;
 
 namespace bcompass
 {
@@ -19,6 +18,51 @@ namespace bcompass
         Location currentLocation = new Location(0, 0);
         private string _distanceFromBBText = "";
         private double _compassRotation = 0;
+
+        public void print_messages()
+        {
+            var data = new (string, float)[] {
+                ("Blockbuster!!!", 0),
+                ("Blockbuster is waiting for you!", 0),
+                ("A trip to Blockbuster is fun for the whole family!", 0),
+                ("Have you ever heard of this cool place called Blockbuster?", 0),
+                ("Fun fact: you can get movies at blockbuster!", 0),
+                ("Overdue tapes at your place? Better make it to your nearest Blockbuster!", 0),
+                ("Make it a blockbuster hike!", 0),
+                ("You should go to Blockbuster.", 0),
+                ("Kellyanne loved going to Blockbuster. I miss her so much.", 0),
+                ("Don't forget to return your tapes!", 0),
+                ("Looking for the hottest new tapes and DVDs? You can find them at your local Blockbuster!", 0),
+                ("Not sure what you’d like to get from Blockbuster yet? We have a call-gorithm!", 0),
+                ("Don’t forget: Blockbuster gets new releases 30 days before Netflix!", 0),
+                ("Have you thought about going to Blockbuster today?", 0),
+                ("Who needs slow streaming? With Blockbuster, you can get real DVDs, real fast!", 0),
+                ("Get some tapes and keep em’ for a week!", 0),
+                ("When the world ends, and the internet streams no more, we’ll still be here.", 0),
+                ("Looking for a video? Blockbuster has it! We have over ten thousand videos!", 0),
+                ("Wow! What a Difference!", 0.0568182f),
+                ("You made it to Blockbuster!", 0.0568182f),
+                ("You’re at your nearest Blockbuster!", 0.0568182f),
+                ("Wow! It’s Blockbuster!", 0.0568182f),
+                ("You’re at Blockbuster! Wow, what a difference!", 0.0568182f),
+                ("Wow, you're almost at Blockbuster!", 10f),
+                ("You’re so close to Blockbuster! Your blockbuster night could be right around the corner!", 10f),
+                ("You’re really close to Blockbuster! I can smell the popcorn already!", 10f),
+                ("Blockbuster is right around the corner! Have you thought about what you’d like to watch?", 10f),
+                ("You’re so close to Blockbuster! What a difference!", 10f),
+                ("Nearly there! Be a friend and rewind once you reach the end!", 10f),
+                ("There’s a Blockbuster near you!", 10f),
+                ("You better get moving, you're quite a ways away from Blockbuster!", 3000f),
+                ("You’re so close, and yet so far from your nearest Blockbuster! Make sure your tapes aren’t overdue!", 3000f),
+                ("Feeling a little far from Blockbuster? Go a little crazy and consider swinging by!", 3000f),
+                ("Head on over to Blockbuster video, and you’ll see just what a difference!", 3000f)
+            };
+            foreach((string, float) message in data)
+            {
+                Console.WriteLine(message.Item1);
+            }
+        }
+
 
         public string DistanceFromBBText
         {
@@ -44,32 +88,13 @@ namespace bcompass
                     OnPropertyChanged();
                 }
             }
-        }
-
-        public void printHello()
-        {
-            Console.WriteLine("hello");
-        }
-
-        public Message[] ReadMessagesFromFile()
-        {
-            using (var reader = new StreamReader("m.csv"))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-            {
-                var records = csv.GetRecords<DistanceMessage>();
-                Console.Write(records);
-            }
-            return null;
-        }
+        }       
          
-
         public void OnPropertyChanged([CallerMemberName] string name = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
         public BCompassViewModel()
         {
-            var records = this.ReadMessagesFromFile();
-            this.printHello();
 
             if (!Compass.IsMonitoring)
                 Compass.Start(SensorSpeed.UI);
@@ -80,7 +105,6 @@ namespace bcompass
         {
             var data = e.Reading;
             UpdateLocation(data.HeadingMagneticNorth);
-
         }
 
         private async void UpdateLocation(double hMagNorth)
@@ -143,19 +167,5 @@ namespace bcompass
             Debug.Write(hMagBB - hMagNorth);
             return hMagBB;
         }
-    }
-
-    public abstract class Message
-    {
-        public string text;
-        public void print()
-        {
-            Console.WriteLine(text);
-        }
-    }
-
-    public class DistanceMessage : Message
-    {
-        public double maxDist;
     }
 }
