@@ -3,9 +3,11 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
+using System.Linq;
 
 namespace bcompass
 {
@@ -18,6 +20,7 @@ namespace bcompass
         Location currentLocation = new Location(0, 0);
         private string _distanceFromBBText = "";
         private double _compassRotation = 0;
+        private string _displayMessage = "";
 
         public string DistanceFromBBText
         {
@@ -27,6 +30,19 @@ namespace bcompass
                 if (_distanceFromBBText != value)
                 {
                     _distanceFromBBText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string DisplayMessage
+        {
+            get => _displayMessage;
+            set
+            {
+                if (_displayMessage != value)
+                {
+                    _displayMessage = value;
                     OnPropertyChanged();
                 }
             }
@@ -50,12 +66,12 @@ namespace bcompass
 
         public BCompassViewModel()
         {
-            this.PrintMessages();
-
-
             if (!Compass.IsMonitoring)
                 Compass.Start(SensorSpeed.UI);
             Compass.ReadingChanged += Compass_ReadingChanged;
+
+            double dist = Location.CalculateDistance(currentLocation, blockBusterLoc, DistanceUnits.Miles);
+            this.SetMessage(dist);
         }
 
         private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
@@ -125,57 +141,35 @@ namespace bcompass
             return hMagBB;
         }
 
-        public string[] BuildMessagesFromDistance((string, double)[] messages, double distance)
+        public List<string> BuildMessagesFromDistance((string, double, double)[] messages, double distance)
         {
-            var returnArray = new string[] { };
-            foreach((string, double) row in messages)
+            List<string> returnList = new List<string>();
+            Console.WriteLine(messages);
+            foreach((string, double, double) row in messages)
             {
-                Console.WriteLine(row.Item1);
+                if (true)
+                {
+                    returnList.Add(row.Item1);
+                }
             }
-
-            return returnArray;
-            
+            return returnList;
         }
 
-        public void PrintMessages()
+        public void SetMessage(double dist)
         {
-            var data = new (string, double)[] {
-                ("Blockbuster!!!", 0),
-                ("Blockbuster is waiting for you!", 0),
-                ("A trip to Blockbuster is fun for the whole family!", 0),
-                ("Have you ever heard of this cool place called Blockbuster?", 0),
-                ("Fun fact: you can get movies at blockbuster!", 0),
-                ("Overdue tapes at your place? Better make it to your nearest Blockbuster!", 0),
-                ("Make it a blockbuster hike!", 0),
-                ("You should go to Blockbuster.", 0),
-                ("Kellyanne loved going to Blockbuster. I miss her so much.", 0),
-                ("Don't forget to return your tapes!", 0),
-                ("Looking for the hottest new tapes and DVDs? You can find them at your local Blockbuster!", 0),
-                ("Not sure what you’d like to get from Blockbuster yet? We have a call-gorithm!", 0),
-                ("Don’t forget: Blockbuster gets new releases 30 days before Netflix!", 0),
-                ("Have you thought about going to Blockbuster today?", 0),
-                ("Who needs slow streaming? With Blockbuster, you can get real DVDs, real fast!", 0),
-                ("Get some tapes and keep em’ for a week!", 0),
-                ("When the world ends, and the internet streams no more, we’ll still be here.", 0),
-                ("Looking for a video? Blockbuster has it! We have over ten thousand videos!", 0),
-                ("Wow! What a Difference!", 0.0568182f),
-                ("You made it to Blockbuster!", 0.0568182f),
-                ("You’re at your nearest Blockbuster!", 0.0568182f),
-                ("Wow! It’s Blockbuster!", 0.0568182f),
-                ("You’re at Blockbuster! Wow, what a difference!", 0.0568182f),
-                ("Wow, you're almost at Blockbuster!", 10f),
-                ("You’re so close to Blockbuster! Your blockbuster night could be right around the corner!", 10f),
-                ("You’re really close to Blockbuster! I can smell the popcorn already!", 10f),
-                ("Blockbuster is right around the corner! Have you thought about what you’d like to watch?", 10f),
-                ("You’re so close to Blockbuster! What a difference!", 10f),
-                ("Nearly there! Be a friend and rewind once you reach the end!", 10f),
-                ("There’s a Blockbuster near you!", 10f),
-                ("You better get moving, you're quite a ways away from Blockbuster!", 3000f),
-                ("You’re so close, and yet so far from your nearest Blockbuster! Make sure your tapes aren’t overdue!", 3000f),
-                ("Feeling a little far from Blockbuster? Go a little crazy and consider swinging by!", 3000f),
-                ("Head on over to Blockbuster video, and you’ll see just what a difference!", 3000f)
+            var data = new (string, double, double)[] {
+                ("Blockbuster!!!", 0, 0),
+                ("Blockbuster is waiting for you!", 0, 0),
+                ("Feeling a little far from Blockbuster? Go a little crazy and consider swinging by!", 3000, 9999),
+                ("Head on over to Blockbuster video, and you’ll see just what a difference!", 3000, 9999)
             };
-            this.BuildMessagesFromDistance(data, 20.0);
+            List<string> messages = this.BuildMessagesFromDistance(data, dist);
+
+            Random rnd = new Random();
+
+            Console.WriteLine("SCLORNK " + messages[0] + " " + rnd.Next(messages.Count));
+
+            this.DisplayMessage = messages[rnd.Next(messages.Count)];
         }
     }
 }
