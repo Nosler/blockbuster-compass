@@ -1,9 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
+using System.Linq;
 
 namespace bcompass
 {
@@ -16,7 +20,8 @@ namespace bcompass
         Location currentLocation = new Location(0, 0);
         private string _distanceFromBBText = "";
         private double _compassRotation = 0;
-        
+        private string _displayMessage = "";
+
         public string DistanceFromBBText
         {
             get => _distanceFromBBText;
@@ -25,6 +30,19 @@ namespace bcompass
                 if (_distanceFromBBText != value)
                 {
                     _distanceFromBBText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string DisplayMessage
+        {
+            get => _displayMessage;
+            set
+            {
+                if (_displayMessage != value)
+                {
+                    _displayMessage = value;
                     OnPropertyChanged();
                 }
             }
@@ -41,8 +59,8 @@ namespace bcompass
                     OnPropertyChanged();
                 }
             }
-        }
-
+        }       
+         
         public void OnPropertyChanged([CallerMemberName] string name = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
@@ -51,13 +69,15 @@ namespace bcompass
             if (!Compass.IsMonitoring)
                 Compass.Start(SensorSpeed.UI);
             Compass.ReadingChanged += Compass_ReadingChanged;
+
+            double dist = Location.CalculateDistance(currentLocation, blockBusterLoc, DistanceUnits.Miles);
+            this.SetMessage(dist);
         }
 
         private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {
             var data = e.Reading;
             UpdateLocation(data.HeadingMagneticNorth);
-
         }
 
         private async void UpdateLocation(double hMagNorth)
@@ -119,6 +139,37 @@ namespace bcompass
 
             Debug.Write(hMagBB - hMagNorth);
             return hMagBB;
+        }
+
+        public List<string> BuildMessagesFromDistance((string, double, double)[] messages, double distance)
+        {
+            List<string> returnList = new List<string>();
+            Console.WriteLine(messages);
+            foreach((string, double, double) row in messages)
+            {
+                if (true)
+                {
+                    returnList.Add(row.Item1);
+                }
+            }
+            return returnList;
+        }
+
+        public void SetMessage(double dist)
+        {
+            var data = new (string, double, double)[] {
+                ("Blockbuster!!!", 0, 0),
+                ("Blockbuster is waiting for you!", 0, 0),
+                ("Feeling a little far from Blockbuster? Go a little crazy and consider swinging by!", 3000, 9999),
+                ("Head on over to Blockbuster video, and you’ll see just what a difference!", 3000, 9999)
+            };
+            List<string> messages = this.BuildMessagesFromDistance(data, dist);
+
+            Random rnd = new Random();
+
+            Console.WriteLine("SCLORNK " + messages[0] + " " + rnd.Next(messages.Count));
+
+            this.DisplayMessage = messages[rnd.Next(messages.Count)];
         }
     }
 }
