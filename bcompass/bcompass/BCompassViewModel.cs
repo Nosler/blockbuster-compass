@@ -67,7 +67,7 @@ namespace bcompass
         public BCompassViewModel()
         {
             if (!Compass.IsMonitoring)
-                Compass.Start(SensorSpeed.UI);
+                Compass.Start(SensorSpeed.Game);
             Compass.ReadingChanged += Compass_ReadingChanged;
 
             double dist = Location.CalculateDistance(currentLocation, blockBusterLoc, DistanceUnits.Miles);
@@ -77,6 +77,7 @@ namespace bcompass
         private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {
             var data = e.Reading;
+            this.CompassRotation = CalculateDirectionToBB(data.HeadingMagneticNorth);
             UpdateLocation(data.HeadingMagneticNorth);
         }
 
@@ -90,9 +91,7 @@ namespace bcompass
                 {
                     currentLocation = new Location(location.Latitude, location.Longitude);
                     double dist = Location.CalculateDistance(currentLocation, blockBusterLoc, DistanceUnits.Miles);
-
                     this.DistanceFromBBText = String.Format("{0:0.##} Miles from", dist);
-                    this.CompassRotation = CalculateDirectionToBB(hMagNorth);
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
@@ -131,14 +130,13 @@ namespace bcompass
 
             double hMagBB = theta * 180 / Math.PI;
 
-            hMagNorth = hMagNorth + 180;
+            // hMagNorth = hMagNorth;
             if (hMagNorth > 360)
                 hMagNorth -= 360;
 
             double bbDirection = hMagBB - hMagNorth;
 
-            Debug.Write(hMagBB - hMagNorth);
-            return hMagBB;
+            return bbDirection;
         }
 
         public List<string> BuildMessagesFromDistance((string, double, double)[] messages, double distance)
@@ -190,11 +188,7 @@ namespace bcompass
                 ("Head on over to Blockbuster video, and you’ll see just what a difference!", 3000, 9999)
             };
             List<string> messages = this.BuildMessagesFromDistance(data, dist);
-
             Random rnd = new Random();
-
-            Console.WriteLine("SCLORNK " + messages[0] + " " + rnd.Next(messages.Count));
-
             this.DisplayMessage = messages[rnd.Next(messages.Count)];
         }
     }

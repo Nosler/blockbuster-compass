@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "geEjO8yCxeFQfGKc8MMMbD1nX5Tuz1Zju9yBbAmmLpAgC/nuaQl2799s5X5CG3IBE/Ti6A21yV/f7gr2LicXsg==",
+  "dgSpecHash": "QB8jvb51qcxanZQV3rwVpmSIl6hHdcue8yWtThXuRzJYmehcNKmA1N9sCCk4wbVkBYEnGgORce1QgrumSq7/Rw==",
   "success": true,
-  "projectFilePath": "/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/bcompass.csproj",
+  "projectFilePath": "C:\\Users\\andin\\Desktop\\blockbuster-compass\\bcompass\\bcompass\\bcompass.csproj",
   "expectedPackageFiles": [
-    "/Users/alexmcknight/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "/Users/alexmcknight/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
-    "/Users/alexmcknight/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
-    "/Users/alexmcknight/.nuget/packages/xamarin.essentials/1.7.5/xamarin.essentials.1.7.5.nupkg.sha512",
-    "/Users/alexmcknight/.nuget/packages/xamarin.forms/5.0.0.2578/xamarin.forms.5.0.0.2578.nupkg.sha512"
+    "C:\\Users\\andin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\andin\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\andin\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\andin\\.nuget\\packages\\xamarin.essentials\\1.7.5\\xamarin.essentials.1.7.5.nupkg.sha512",
+    "C:\\Users\\andin\\.nuget\\packages\\xamarin.forms\\5.0.0.2578\\xamarin.forms.5.0.0.2578.nupkg.sha512"
   ],
   "logs": []
 }

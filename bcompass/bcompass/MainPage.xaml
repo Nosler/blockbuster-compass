@@ -6,7 +6,7 @@
 	<ContentPage.BindingContext>
 		<local:BCompassViewModel/>
 	</ContentPage.BindingContext>
-    <AbsoluteLayout>
+    <AbsoluteLayout BackgroundColor="White">
         <Image
                AbsoluteLayout.LayoutBounds="0.3, 1.1, .85, .8"
                AbsoluteLayout.LayoutFlags="All"

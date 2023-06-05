@@ -543,25 +543,32 @@
     ]
   },
   "packageFolders": {
-    "/Users/alexmcknight/.nuget/packages/": {}
+    "C:\\Users\\andin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/bcompass.csproj",
+      "projectUniqueName": "C:\\Users\\andin\\Desktop\\blockbuster-compass\\bcompass\\bcompass\\bcompass.csproj",
       "projectName": "bcompass",
-      "projectPath": "/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/bcompass.csproj",
-      "packagesPath": "/Users/alexmcknight/.nuget/packages/",
-      "outputPath": "/Users/alexmcknight/Desktop/blockbuster-compass/bcompass/bcompass/obj/",
+      "projectPath": "C:\\Users\\andin\\Desktop\\blockbuster-compass\\bcompass\\bcompass\\bcompass.csproj",
+      "packagesPath": "C:\\Users\\andin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\andin\\Desktop\\blockbuster-compass\\bcompass\\bcompass\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/alexmcknight/.config/NuGet/NuGet.Config"
+        "C:\\Users\\andin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -601,11 +608,12 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
