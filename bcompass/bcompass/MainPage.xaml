@@ -26,17 +26,50 @@
                Source="barcode.png"
                />
         <Label 
-            x:Name="AA"
+            x:Name="Message"
             AbsoluteLayout.LayoutBounds="0.5, 0.15, .95, 0.07"
             AbsoluteLayout.LayoutFlags="All"
             Text="{Binding DisplayMessage}" 
             FontFamily="Bahnschrift"
             FontAttributes="Bold"
             HorizontalTextAlignment="Center" 
-            TextColor="Black" 
+            TextColor="LightCyan" 
             FontSize="20" 
             />
         
+        <Label 
+            x:Name="AccReadingX"
+            AbsoluteLayout.LayoutBounds="0.5, 0.15, .95, 0.07"
+            AbsoluteLayout.LayoutFlags="All"
+            Text="{Binding AccReadingX}" 
+            FontFamily="Bahnschrift"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Left" 
+            TextColor="Black" 
+            FontSize="12" 
+            />
+        <Label 
+            x:Name="AccReadingY"
+            AbsoluteLayout.LayoutBounds="0.5, 0.17, .95, 0.07"
+            AbsoluteLayout.LayoutFlags="All"
+            Text="{Binding AccReadingY}" 
+            FontFamily="Bahnschrift"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Left" 
+            TextColor="Black" 
+            FontSize="12" 
+            />
+        <Label 
+            x:Name="AccReadingZ"
+            AbsoluteLayout.LayoutBounds="0.5, 0.19, .95, 0.07"
+            AbsoluteLayout.LayoutFlags="All"
+            Text="{Binding AccReadingZ}" 
+            FontFamily="Bahnschrift"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Left" 
+            TextColor="Black" 
+            FontSize="12" 
+            />
         <Label 
             AbsoluteLayout.LayoutBounds="0.90, 0.015, .4, .1"
             AbsoluteLayout.LayoutFlags="All"

@@ -21,6 +21,9 @@ namespace bcompass
         private string _distanceFromBBText = "";
         private double _compassRotation = 0;
         private string _displayMessage = "";
+        private string _accReadingX = "";
+        private string _accReadingY = "";
+        private string _accReadingZ = "";
 
         public string DistanceFromBBText
         {
@@ -59,8 +62,46 @@ namespace bcompass
                     OnPropertyChanged();
                 }
             }
-        }       
-         
+        }
+
+        public string AccReadingX
+        {
+            get => _accReadingX;
+            set
+            {
+                if (_accReadingX != value)
+                {
+                    _accReadingX = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string AccReadingY
+        {
+            get => _accReadingY;
+            set
+            {
+                if (_accReadingY != value)
+                {
+                    _accReadingY = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public string AccReadingZ
+        {
+            get => _accReadingZ;
+            set
+            {
+                if (_accReadingZ != value)
+                {
+                    _accReadingZ = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public void OnPropertyChanged([CallerMemberName] string name = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
@@ -68,7 +109,11 @@ namespace bcompass
         {
             if (!Compass.IsMonitoring)
                 Compass.Start(SensorSpeed.Game);
+            if (!Accelerometer.IsMonitoring)
+                Accelerometer.Start(SensorSpeed.UI);
+
             Compass.ReadingChanged += Compass_ReadingChanged;
+            Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
 
             double dist = Location.CalculateDistance(currentLocation, blockBusterLoc, DistanceUnits.Miles);
             this.SetMessage(dist);
@@ -80,7 +125,13 @@ namespace bcompass
             this.CompassRotation = CalculateDirectionToBB(data.HeadingMagneticNorth);
             UpdateLocation(data.HeadingMagneticNorth);
         }
-
+        void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
+        {
+            var data = e.Reading;
+            this.AccReadingX = ($"X   {data.Acceleration.X}");
+            this.AccReadingY = ($"Y   {data.Acceleration.Y}");
+            this.AccReadingZ = ($"Z   {data.Acceleration.Z}");
+        }
         private async void UpdateLocation(double hMagNorth)
         {
             try
