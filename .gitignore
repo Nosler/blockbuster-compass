@@ -3,9 +3,10 @@
 *.aar
 *.ap_
 *.aab
-bcompass/bcompass.Android/obj/
+bcompass/.vs/
+bcompass/bcompass/obj/
 bcompass/bcompass.iOS/obj/
-
+bcompass/bcompass.Android/obj/
 
 # Files for the ART/Dalvik VM
 *.dex
