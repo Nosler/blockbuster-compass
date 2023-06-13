@@ -122,5 +122,17 @@
             TextColor="Black" 
             FontSize="24" 
             Rotation="-90"/>
+
+        <Button
+            x:Name="Options"
+            Clicked="NavigateTo"
+            WidthRequest="40"
+            HeightRequest="40"
+            CornerRadius="20"
+            BorderWidth="2"
+            BorderColor="Gray"
+            Text="+"
+            />
+
     </AbsoluteLayout>
 </ContentPage>

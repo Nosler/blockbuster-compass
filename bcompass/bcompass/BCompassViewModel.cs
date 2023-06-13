@@ -8,6 +8,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
 using System.Linq;
+using Android.Content.Res;
 
 namespace bcompass
 {
@@ -204,6 +205,12 @@ namespace bcompass
             return returnList;
         }
 
+        private async void NavigateTo(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SecondPage());
+        }
+
+
         public void SetMessage(double dist)
         {
             var data = new (string, double, double)[] {
@@ -254,10 +261,17 @@ namespace bcompass
                 ("Looking for a video? Blockbuster has those!", 0, 0),
                 ("We have over ten thousand videos!", 0, 0),
                 ("Looking for a video? Blockbuster has it!", 0, 0),
+                ("Knock Knock! Who's there? It's Blockbuster!", 0, 0),
+                ("Make it a Blockbuster Night!", 0, 0),
+                ("Bust your Blocks and Knock Off Your Socks!", 0, 0),
+                ("Whatever time of day it is, you should make it a Blockbuster one!", 0, 0),
+                ("Go to Blockbuster now!", 0, 0),
+                ("Blockbuster has movies!", 0, 0),
+                ("Blockbuster Blockbuster Blockbuster Blockbuster Blockbuster Blockbuster Blockbuster", 0, 0),
                 ("Video stores aren't going anywhere, so be sure you know where yours are!", 0, 0),
                 ("Looking for a video? Blockbuster has it! We have over ten thousand videos!", 0, 0),
                 ("Feeling a little far from Blockbuster? Go a little crazy and consider swinging by!", 3000, 9999),
-                ("Head on over to Blockbuster video, and you’ll see just what a difference!", 3000, 9999)
+                ("Head on over to Blockbuster video, and you’ll see just what a difference!", 3000, 9999),
             };
             List<string> messages = this.BuildMessagesFromDistance(data, dist);
             Random rnd = new Random();

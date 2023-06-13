@@ -16,6 +16,10 @@ namespace bcompass
             BCompassViewModel bcvm = new BCompassViewModel();
             BindingContext = this;
             InitializeComponent();
-        }        
+        }
+
+        void Options_Clicked(System.Object sender, System.EventArgs e)
+        {
+        }
     }
 }
