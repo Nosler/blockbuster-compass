@@ -1,9 +1,12 @@
 ﻿<Properties StartupConfiguration="{048DF704-8D3D-45FC-818A-A78CCB833F9A}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.bcompass.Android PreferredExecutionTarget="Android.pixel_5_-_api_33" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="bcompass/BCompassViewModel.cs">
     <Files>
       <File FileName="bcompass.Android/Assets/AboutAssets.txt" />
       <File FileName="bcompass.Android/MainActivity.cs" />
-      <File FileName="bcompass/BCompassViewModel.cs" Line="169" Column="66" />
+      <File FileName="bcompass/BCompassViewModel.cs" Line="169" Column="1" />
       <File FileName="../../../../../Library/Frameworks/Mono.framework/External/xbuild/Xamarin/iOS/Xamarin.Shared.targets" />
       <File FileName="bcompass/MainPage.xaml" />
     </Files>
@@ -12,9 +15,7 @@
         <State name="__root__">
           <Node name="bcompass" expanded="True">
             <Node name="NuGet.Config files" expanded="True" />
-            <Node name="bcompass" expanded="True">
-              <Node name="BCompassViewModel.cs" selected="True" />
-            </Node>
+            <Node name="bcompass" expanded="True" />
             <Node name="bcompass.Android" expanded="True">
               <Node name="Assets" expanded="True" />
               <Node name="Properties" expanded="True" />
@@ -25,13 +26,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.MonoDroid LastDeploySdkVersion="13.2.0.0" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_33" />
-  <MonoDevelop.Ide.ItemProperties.bcompass.Android PreferredExecutionTarget="Android.pixel_5_-_api_33" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_33" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="13.2.0.0" />
 </Properties>
