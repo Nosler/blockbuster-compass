@@ -18,13 +18,14 @@ namespace bcompass
         static Location blockBusterLoc = new Location(44.067365, -121.303486);
 
         Location currentLocation = new Location(0, 0);
-        private string _distanceFromBBText = "";
-        private double _compassRotation = 0;
-        private string _displayMessage = "";
-        private string _accReadingX = "";
-        private string _accReadingY = "";
-        private string _accReadingZ = "";
-
+        private double distanceFromBB;
+        private string _distanceFromBBText;
+        private double _compassRotation;
+        private string _displayMessage;
+        private string _accReadingX;
+        private string _accReadingY;
+        private string _accReadingZ;
+        private bool _setToMiles;
         public string DistanceFromBBText
         {
             get => _distanceFromBBText;
