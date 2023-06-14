@@ -33,11 +33,10 @@
             FontFamily="Bahnschrift"
             FontAttributes="Bold"
             HorizontalTextAlignment="Center" 
-            TextColor="LightCyan" 
+            TextColor="Black" 
             FontSize="20" 
             />
-        
-        <Label 
+        <!--<Label 
             x:Name="AccReadingX"
             AbsoluteLayout.LayoutBounds="0.5, 0.15, .95, 0.07"
             AbsoluteLayout.LayoutFlags="All"
@@ -69,7 +68,7 @@
             HorizontalTextAlignment="Left" 
             TextColor="Black" 
             FontSize="12" 
-            />
+            />-->
         <Label 
             AbsoluteLayout.LayoutBounds="0.90, 0.015, .4, .1"
             AbsoluteLayout.LayoutFlags="All"
