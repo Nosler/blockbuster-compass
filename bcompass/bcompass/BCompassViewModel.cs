@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -102,6 +102,19 @@ namespace bcompass
             }
         }
 
+        public bool SetToMiles
+        {
+            get => _setToMiles;
+            set
+            {
+                if (_setToMiles != value)
+                {
+                    _setToMiles = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public void OnPropertyChanged([CallerMemberName] string name = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
@@ -109,11 +122,11 @@ namespace bcompass
         {
             if (!Compass.IsMonitoring)
                 Compass.Start(SensorSpeed.Game);
-            if (!Accelerometer.IsMonitoring)
-                Accelerometer.Start(SensorSpeed.UI);
+            /*if (!Accelerometer.IsMonitoring)
+                Accelerometer.Start(SensorSpeed.UI);*/
 
             Compass.ReadingChanged += Compass_ReadingChanged;
-            Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+            //Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
 
             double dist = Location.CalculateDistance(currentLocation, blockBusterLoc, DistanceUnits.Miles);
             this.SetMessage(dist);
@@ -142,7 +155,16 @@ namespace bcompass
                 {
                     currentLocation = new Location(location.Latitude, location.Longitude);
                     double dist = Location.CalculateDistance(currentLocation, blockBusterLoc, DistanceUnits.Miles);
-                    this.DistanceFromBBText = String.Format("{0:0.##} Miles from", dist);
+
+                    this.distanceFromBB = dist;
+                    if (this.SetToMiles)
+                    {
+                        this.DistanceFromBBText = String.Format("{0:0.##} Miles from", dist);
+                    }
+                    else
+                    {
+                        this.DistanceFromBBText = String.Format("{0:0.##} KM from", dist * 1.609344);
+                    }
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
@@ -181,7 +203,6 @@ namespace bcompass
 
             double hMagBB = theta * 180 / Math.PI;
 
-            // hMagNorth = hMagNorth;
             if (hMagNorth > 360)
                 hMagNorth -= 360;
 
