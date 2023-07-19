@@ -17,15 +17,19 @@ namespace bcompass
 
         static Location blockBusterLoc = new Location(44.067365, -121.303486);
 
-        Location currentLocation = new Location(0, 0);
+        private Location currentLocation = new Location(0, 0);
+        private float zReading;
+
         private double distanceFromBB;
         private string _distanceFromBBText;
         private double _compassRotation;
         private string _displayMessage;
+        private bool _setToMiles;
+
         private string _accReadingX;
         private string _accReadingY;
         private string _accReadingZ;
-        private bool _setToMiles;
+
         public string DistanceFromBBText
         {
             get => _distanceFromBBText;
@@ -122,12 +126,17 @@ namespace bcompass
         public BCompassViewModel()
         {
             if (!Compass.IsMonitoring)
-                Compass.Start(SensorSpeed.Game);
-            /*if (!Accelerometer.IsMonitoring)
-                Accelerometer.Start(SensorSpeed.UI);*/
+            {
+                Compass.Start(SensorSpeed.Game); 
+            }
+
+            if (!Accelerometer.IsMonitoring)
+            {
+                Accelerometer.Start(SensorSpeed.UI);
+            }
 
             Compass.ReadingChanged += Compass_ReadingChanged;
-            //Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+            Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
 
             double dist = Location.CalculateDistance(currentLocation, blockBusterLoc, DistanceUnits.Miles);
             this.SetMessage(dist);
@@ -136,15 +145,23 @@ namespace bcompass
         private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {
             var data = e.Reading;
-            this.CompassRotation = CalculateDirectionToBB(data.HeadingMagneticNorth);
+            if (this.zReading < 0)
+            {
+                this.CompassRotation = CalculateDirectionToBB(data.HeadingMagneticNorth) + 180.0;
+            }
+            else
+            {
+                this.CompassRotation = CalculateDirectionToBB(data.HeadingMagneticNorth);
+            }
             UpdateLocation(data.HeadingMagneticNorth);
         }
         void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
         {
             var data = e.Reading;
-            this.AccReadingX = ($"X   {data.Acceleration.X}");
-            this.AccReadingY = ($"Y   {data.Acceleration.Y}");
-            this.AccReadingZ = ($"Z   {data.Acceleration.Z}");
+            //this.AccReadingX = ($"X   {data.Acceleration.X}");
+            //this.AccReadingY = ($"Y   {data.Acceleration.Y}");
+            //this.AccReadingZ = ($"Z   {data.Acceleration.Z}");
+            this.zReading = data.Acceleration.Z;
         }
         private async void UpdateLocation(double hMagNorth)
         {
