@@ -8,9 +8,32 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Security.Cryptography;
 
 namespace bcompass
 {
+    public class Message
+    {
+        public string text { get; }
+        public double rarity { get; }
+        public double minDisplayDistance { get; }
+        public double maxDisplayDistance { get; }
+        public double unitMeasurement { get; }
+        public string disclaimer { get; }
+        public bool used { get; set; }
+        public Message(string tex, double rar, double minDistance, double maxDistance, double measurement, string disc)
+        {
+            this.text = tex;
+            this.rarity = rar;
+            this.minDisplayDistance = minDistance;
+            this.maxDisplayDistance = maxDistance;
+            this.disclaimer = disc;
+            this.unitMeasurement = measurement;
+            this.used = false;
+        }
+    }
+
     public class BCompassViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -20,15 +43,20 @@ namespace bcompass
         private Location currentLocation = new Location(0, 0);
         private float zReading;
 
+        DateTime nextMessageTime = DateTime.MinValue;
         private double distanceFromBB;
+
         private string _distanceFromBBText;
         private double _compassRotation;
         private string _displayMessage;
+        private string _displayDisclaimer;
         private bool _setToMiles;
 
         private string _accReadingX;
         private string _accReadingY;
         private string _accReadingZ;
+
+        List<Message> messages = new List<Message> { };
 
         public string DistanceFromBBText
         {
@@ -55,7 +83,18 @@ namespace bcompass
                 }
             }
         }
-
+        public string DisplayDisclaimer
+        {
+            get => _displayDisclaimer;
+            set
+            {
+                if (_displayDisclaimer != value)
+                {
+                    _displayDisclaimer = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public double CompassRotation
         {
             get => _compassRotation;
@@ -94,6 +133,7 @@ namespace bcompass
                 }
             }
         }
+
         public string AccReadingZ
         {
             get => _accReadingZ;
@@ -138,8 +178,8 @@ namespace bcompass
             Compass.ReadingChanged += Compass_ReadingChanged;
             Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
 
+            this.messages = this.BuildMessagesList("beans");
             double dist = Location.CalculateDistance(currentLocation, blockBusterLoc, DistanceUnits.Miles);
-            this.SetMessage(dist);
         }
 
         private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
@@ -183,6 +223,13 @@ namespace bcompass
                     {
                         this.DistanceFromBBText = String.Format("{0:0.##} KM from", dist * 1.609344);
                     }
+
+                    if (DateTime.Now < this.nextMessageTime)
+                    {
+                        this.UpdateMessageDisplay(dist);
+                        this.nextMessageTime = DateTime.Now.AddSeconds(10);
+                    }
+
                 }
             }
             catch (FeatureNotSupportedException fnsEx)
@@ -229,29 +276,42 @@ namespace bcompass
             return bbDirection;
         }
 
-        public List<string> BuildMessagesFromDistance((string, double, double)[] messages, double distance)
+        public List<Message> BuildMessagesList(string filename)
         {
-            List<string> returnList = new List<string>();
-            Console.WriteLine(messages);
-            foreach((string, double, double) row in messages)
-            {
-                if ((row.Item2 == 0 && row.Item3 == 0) ||
-                    (row.Item2 <= distanceFromBB && row.Item3 >= distanceFromBB))
-                {
-                    returnList.Add(row.Item1);
-                }
-            }
-            return returnList;
+            return new List<Message> { new Message("Test", 0, 0, 0, -1, "") };
         }
 
-        public void SetMessage(double dist)
+        public void UpdateMessageDisplay(double dist)
         {
-            var data = new (string, double, double)[] {
-                ("Blockbuster!!!", 0, 0)
-            };
-            List<string> messages = this.BuildMessagesFromDistance(data, dist);
+            List<int> availableIndexes = new List<int>();
+
+
+            CheckAvailability:
+                for (int i = 0; i < this.messages.Count; i++)
+                {
+                    Message m = this.messages[i];
+                    if (!m.used && (m.minDisplayDistance <= dist && m.maxDisplayDistance >= dist))
+                    {
+                        availableIndexes.Add(i);
+                    }
+                }
+
+            if (availableIndexes.Count < 1)
+            {
+                foreach (Message m in this.messages) 
+                {
+                    m.used = false;
+                }
+                goto CheckAvailability;
+            }
+
             Random rnd = new Random();
-            this.DisplayMessage = messages[rnd.Next(messages.Count)];
+            int index = rnd.Next(availableIndexes.Count);
+            Message msg = this.messages[index];
+            this.messages[index].used = true;
+            
+            this.DisplayMessage = msg.text.Replace("{val}", (dist * msg.unitMeasurement).ToString());
+            this.DisplayDisclaimer = msg.disclaimer;
         }
     }
 }
