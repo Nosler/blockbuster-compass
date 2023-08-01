@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
 namespace bcompass.Droid
 {
     [Activity(Label = "SplashActivity", Theme ="@style/MyTheme.Splash", NoHistory = true)]
@@ -31,4 +32,4 @@ namespace bcompass.Droid
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
     }
-}
+}*/

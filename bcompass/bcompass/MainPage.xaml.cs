@@ -13,7 +13,6 @@ namespace bcompass
     {
         public MainPage()
         {
-            BCompassViewModel bcvm = new BCompassViewModel();
             BindingContext = this;
             InitializeComponent();
         }        

@@ -16,19 +16,25 @@ namespace bcompass
         protected override void OnStart()
         {
             if (!Compass.IsMonitoring)
-                Compass.Start(SensorSpeed.UI);
+                Compass.Start(SensorSpeed.Game);
+            if (!Accelerometer.IsMonitoring)
+                Accelerometer.Start(SensorSpeed.UI);
         }
 
         protected override void OnSleep()
         {
             if (Compass.IsMonitoring)
                 Compass.Stop();
+            if (Accelerometer.IsMonitoring)
+                Accelerometer.Stop();
         }
 
         protected override void OnResume()
         {
             if (!Compass.IsMonitoring)
-                Compass.Start(SensorSpeed.UI);
+                Compass.Start(SensorSpeed.Game);
+            if (!Accelerometer.IsMonitoring)
+                Accelerometer.Start(SensorSpeed.UI);
         }
     }
 }

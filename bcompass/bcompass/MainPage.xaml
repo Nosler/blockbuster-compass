@@ -6,10 +6,10 @@
 	<ContentPage.BindingContext>
 		<local:BCompassViewModel/>
 	</ContentPage.BindingContext>
-    <SwipeView Threshold="700">
-        <AbsoluteLayout BackgroundColor="White">
+    <SwipeView Threshold="650">
+        <AbsoluteLayout BackgroundColor="#efe7e5">
             <Image
-               AbsoluteLayout.LayoutBounds="0.3, 1.1, .85, .8"
+               AbsoluteLayout.LayoutBounds="0.3, 1.05, .85, .8"
                AbsoluteLayout.LayoutFlags="All"
                Source="bg.png"
                />
@@ -19,65 +19,50 @@
                AbsoluteLayout.LayoutFlags="All"
                Source="compasspp.png"
                Rotation="{Binding CompassRotation}"
-               />
+              />
             <Image
                x:Name="Barcode"
                AbsoluteLayout.LayoutBounds="0.90, 0.021, .4, .1"
                AbsoluteLayout.LayoutFlags="All"
                Source="barcode.png"
                />
+            <Image
+                Rotation="180"
+               AbsoluteLayout.LayoutBounds="0.1, 0.3, 3, 3.544"
+               AbsoluteLayout.LayoutFlags="All"
+               Source="edge2.png"
+               />
             <Label 
             x:Name="Message"
-            AbsoluteLayout.LayoutBounds="0.5, 0.15, .95, 0.07"
+            AbsoluteLayout.LayoutBounds="0.5, 0.143, .95, 0.07"
             AbsoluteLayout.LayoutFlags="All"
-            Text="{Binding DisplayMessage}" 
+            Text="{Binding Message}" 
             FontFamily="Bahnschrift"
             FontAttributes="Bold"
-            HorizontalTextAlignment="Center" 
-            TextColor="Black" 
-            FontSize="20" 
-            />
-            <Label 
-            x:Name="AccReadingX"
-            AbsoluteLayout.LayoutBounds="0.5, 0.15, .95, 0.07"
-            AbsoluteLayout.LayoutFlags="All"
-            Text="{Binding AccReadingX}" 
-            FontFamily="Bahnschrift"
-            FontAttributes="Bold"
-            HorizontalTextAlignment="Left" 
-            TextColor="Black" 
-            FontSize="12" 
-            />
-        <Label 
-            x:Name="AccReadingY"
-            AbsoluteLayout.LayoutBounds="0.5, 0.17, .95, 0.07"
-            AbsoluteLayout.LayoutFlags="All"
-            Text="{Binding AccReadingY}" 
-            FontFamily="Bahnschrift"
-            FontAttributes="Bold"
-            HorizontalTextAlignment="Left" 
-            TextColor="Black" 
-            FontSize="12" 
-            />
-        <Label 
-            x:Name="AccReadingZ"
-            AbsoluteLayout.LayoutBounds="0.5, 0.19, .95, 0.07"
-            AbsoluteLayout.LayoutFlags="All"
-            Text="{Binding AccReadingZ}" 
-            FontFamily="Bahnschrift"
-            FontAttributes="Bold"
-            HorizontalTextAlignment="Left" 
-            TextColor="Black" 
-            FontSize="12" 
-            />
-        <Label 
-            AbsoluteLayout.LayoutBounds="0.90, 0.015, .4, .1"
-            AbsoluteLayout.LayoutFlags="All"
-            Text="44421211813" 
-            FontFamily="Bahnschrift"
             HorizontalTextAlignment="Center" 
             TextColor="Black" 
             FontSize="18" 
+            />
+
+            <Label 
+            x:Name="Disclaimer"
+            AbsoluteLayout.LayoutBounds="0.5, 1, .7, .2"
+            AbsoluteLayout.LayoutFlags="All"
+            Text="{Binding Disclaimer}" 
+            FontFamily="Bahnschrift"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Left" 
+            TextColor="WhiteSmoke" 
+            FontSize="12" 
+            />
+            <Label 
+            AbsoluteLayout.LayoutBounds="0.95, 0.015, .5 , .2"
+            AbsoluteLayout.LayoutFlags="All"
+            Text="{Binding TotalWalkedText}"
+            FontFamily="Bahnschrift"
+            HorizontalTextAlignment="Center" 
+            TextColor="Black" 
+            FontSize="14" 
             />
 
             <StackLayout
@@ -86,29 +71,31 @@
             Margin="15"
             Spacing="1">
                 <Label
-            Text="You are only" 
-            FontFamily="Bahnschrift"
-            FontAttributes="Bold"
-            HorizontalTextAlignment="Left" 
-            TextColor="Black" 
-            FontSize="14" 
-            />
+                Text="You are only" 
+                FontFamily="Bahnschrift"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Left" 
+                TextColor="Black" 
+                FontSize="14" 
+                />
+            
                 <Label
-            Text="{Binding DistanceFromBBText}" 
-            FontFamily="Bahnschrift"
-            FontAttributes="Bold"
-            HorizontalTextAlignment="Left" 
-            TextColor="Black" 
-            FontSize="16" 
-            />
+                Text="{Binding DistanceFromBBText}" 
+                FontFamily="Bahnschrift"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Left" 
+                TextColor="Black" 
+                FontSize="16" 
+                />
+            
                 <Label
-            Text="your nearest Blockbuster!" 
-            FontFamily="Bahnschrift"
-            FontAttributes="Bold"
-            HorizontalTextAlignment="Left" 
-            TextColor="Black" 
-            FontSize="14" 
-            />
+                Text="your nearest Blockbuster!" 
+                FontFamily="Bahnschrift"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Left" 
+                TextColor="Black" 
+                FontSize="14" 
+                />
             </StackLayout>
 
             <Label 
@@ -124,11 +111,21 @@
             Rotation="-90"/>
         </AbsoluteLayout>
         <SwipeView.BottomItems>
-            <SwipeItem Text="AAA"/>
-            <SwipeItem Text="Delete"
-                       IconImageSource="bg.png"
-                       BackgroundColor="LightPink"/>
+            <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
+                <SwipeItemView>
+                    <AbsoluteLayout>
+                        <Image
+                   AbsoluteLayout.LayoutBounds="0, 0.5, 1, 2.2"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Source="vhs.png"
+                   />
+                        <Switch 
+                            AbsoluteLayout.LayoutBounds="0, 0.5, 1, 2.2"
+                            OnColor="Orange"
+                            ThumbColor="Green" />
+                    </AbsoluteLayout>
+                </SwipeItemView>
+            </SwipeItems>
         </SwipeView.BottomItems>
     </SwipeView>
-
 </ContentPage>
