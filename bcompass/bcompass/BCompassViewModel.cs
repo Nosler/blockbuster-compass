@@ -52,18 +52,13 @@ namespace bcompass
         private double zReading;
         private double totalDistanceWalked;
         private double distanceFromBB;
-        private int counter;
 
         private double _compassRotation;
         private string _distanceFromBBText;
         private string _totalWalkedText;
         private string _disclaimerText;
         private string _messageText;
-        private bool _setToMiles;
-
-        private string _accReadingX;
-        private string _accReadingY;
-        private string _accReadingZ;
+        private bool _setToMiles = true;
 
         List<Message> messages = new List<Message> {
                 new Message("Test1", 0, 0, 0, -1, ""),
@@ -164,22 +159,22 @@ namespace bcompass
                 totalDistanceWalked = travelled;
                 if (SetToMiles)
                 {
-                    TotalWalkedText = String.Format("{0:0.#} m Travelled to Blockbuster", travelled);
+                    TotalWalkedText = String.Format("{0:0.#} mi Travelled towards Blockbuster", travelled);
                 }
                 else
                 {
-                    TotalWalkedText = String.Format("{0:0.#} km Travelled to Blockbuster", travelled * KMCONSTANT);
+                    TotalWalkedText = String.Format("{0:0.#} km Travelled towards Blockbuster", travelled * KMCONSTANT);
                 }
             }
             else
             {
                 if (SetToMiles)
                 {
-                    TotalWalkedText = String.Format("{0:0.#} m Travelled to Blockbuster", 1110);
+                    TotalWalkedText = String.Format("{0:0.#} mi Travelled towards Blockbuster", 1110);
                 }
                 else
                 {
-                    TotalWalkedText = String.Format("{0:0.#} km Travelled to Blockbuster", 0111);
+                    TotalWalkedText = String.Format("{0:0.#} km Travelled towards Blockbuster", 0111);
                 }
             }
             double dist = Location.CalculateDistance(currentLocation, BBLOCATION, DistanceUnits.Miles);
@@ -317,11 +312,11 @@ namespace bcompass
                         totalDistanceWalked += (distanceFromBB - dist);
                         if (SetToMiles)
                         {
-                            TotalWalkedText = String.Format("{0:0.#} m Travelled to Blockbuster", totalDistanceWalked);
+                            TotalWalkedText = String.Format("{0:0.#} mi Travelled towards Blockbuster", totalDistanceWalked);
                         }
                         else
                         {
-                            TotalWalkedText = String.Format("{0:0.#} km Travelled to Blockbuster", totalDistanceWalked * KMCONSTANT);
+                            TotalWalkedText = String.Format("{0:0.#} km Travelled towards Blockbuster", totalDistanceWalked * KMCONSTANT);
                         }
                         File.WriteAllText(saveData, totalDistanceWalked.ToString());
                     }
@@ -329,7 +324,7 @@ namespace bcompass
                     distanceFromBB = dist;
                     if (SetToMiles)
                     {
-                        DistanceFromBBText = String.Format("{0:0.##} m from", dist);
+                        DistanceFromBBText = String.Format("{0:0.##} mi from", dist);
                     }
                     else
                     {

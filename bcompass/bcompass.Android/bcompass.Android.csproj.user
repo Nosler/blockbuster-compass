@@ -4,7 +4,7 @@
     <SelectedDevice>Samsung SM-A526U</SelectedDevice>
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
     <ActiveDebugProfile>Samsung SM-A526U %28Android 13.0 - API 33%29</ActiveDebugProfile>
-    <DefaultDevice>pixel_5</DefaultDevice>
+    <DefaultDevice>s9</DefaultDevice>
     <AndroidDesignerPreferredTheme>MainTheme</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>
