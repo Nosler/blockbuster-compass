@@ -1,0 +1,11 @@
+Launcher Icons
+
+    ldpi (120dpi) – 36 x 36 px
+    mdpi (160dpi) – 48 x 48 px
+    hdpi (240dpi) – 72 x 72 px
+    xhdpi (320dpi) – 96 x 96 px
+
+
+High Resolution Launcher Icon
+    32-Bit PNG 512 x 512
+    Maximum size of 1024KB

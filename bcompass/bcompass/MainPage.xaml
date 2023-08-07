@@ -6,7 +6,7 @@
 	<ContentPage.BindingContext>
 		<local:BCompassViewModel/>
 	</ContentPage.BindingContext>
-    <SwipeView>
+    <SwipeView Threshold="650">
         <AbsoluteLayout BackgroundColor="#efe7e5">
             <Image
                AbsoluteLayout.LayoutBounds="0.3, 1.02, .85, .77"
@@ -22,7 +22,7 @@
               />
             <Image
                x:Name="Barcode"
-               AbsoluteLayout.LayoutBounds="0.90, 0.07, .35, .038"
+               AbsoluteLayout.LayoutBounds="0.9, 0.05, .35, .04"
                AbsoluteLayout.LayoutFlags="All"
                Source="barcode.png"
                />
@@ -34,21 +34,21 @@
                />
             <Label 
                 x:Name="Message"
-                AbsoluteLayout.LayoutBounds="0.5, 0.143, .95, 0.07"
+                AbsoluteLayout.LayoutBounds="0.5, 0.125, .95, 0.1"
                 AbsoluteLayout.LayoutFlags="All"
-                Text="{Binding Message}" 
-                FontFamily="Bahnschrift"
-                FontAttributes="Bold"
-                HorizontalTextAlignment="Center" 
-                TextColor="Black" 
+                Text="{Binding Message}"
                 FontSize="18" 
+                FontFamily="Helvetica"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                TextColor="Black"
                 />
             <Label 
                 x:Name="Disclaimer"
                 AbsoluteLayout.LayoutBounds="0.5, 1, .7, .2"
                 AbsoluteLayout.LayoutFlags="All"
                 Text="{Binding Disclaimer}" 
-                FontFamily="Bahnschrift"
+                FontFamily="Helvetica"
                 FontAttributes="Bold"
                 HorizontalTextAlignment="Left" 
                 TextColor="WhiteSmoke" 
@@ -58,51 +58,51 @@
                 AbsoluteLayout.LayoutBounds="0.9, 0.015, .35 , .1"
                 AbsoluteLayout.LayoutFlags="All"
                 Text="{Binding TotalWalkedText}"
-                FontFamily="Bahnschrift"
+                FontFamily="Helvetica"
                 HorizontalTextAlignment="Center" 
                 TextColor="Black"
                 FontSize="14" 
                 />
 
             <StackLayout
-            AbsoluteLayout.LayoutBounds="0.05, 0.00, .6, 0.05"
+            AbsoluteLayout.LayoutBounds="0.05, 0.00, .7, 0.05"
             AbsoluteLayout.LayoutFlags="All"
             Margin="15"
-            Spacing="1">
+            Spacing="0">
                 <Label
                     Text="You are only" 
-                    FontFamily="Bahnschrift"
-                    FontAttributes="Bold"
+                    FontFamily="Helvetica"
                     HorizontalTextAlignment="Left" 
                     TextColor="Black" 
+                    FontAttributes="Bold"
                     FontSize="15" 
                     />
             
                 <Label
                     Text="{Binding DistanceFromBBText}" 
-                    FontFamily="Bahnschrift"
+                    FontFamily="Helvetica"
                     FontAttributes="Bold"
                     HorizontalTextAlignment="Left" 
                     TextColor="Black" 
-                    FontSize="18" 
+                    FontSize="17" 
                     />
             
                 <Label
-                    Text="your nearest Blockbuster!" 
-                    FontFamily="Bahnschrift"
-                    FontAttributes="Bold"
+                    Text="Your local Blockbuster!" 
+                    FontFamily="Helvetica"
                     HorizontalTextAlignment="Left" 
-                    TextColor="Black" 
+                    TextColor="Black"
+                    FontAttributes="Bold"
                     FontSize="15" 
                     />
             </StackLayout>
 
             <Label 
                 x:Name="SideText"
-                AbsoluteLayout.LayoutBounds="-0.385, .62, 1.5, .04"
+                AbsoluteLayout.LayoutBounds="-0.385, .53, 1.5, .04"
                 AbsoluteLayout.LayoutFlags="All"
-                Text="Blockbuster Compass" 
-                FontFamily="Bahnschrift"
+                Text="BLOCKBUSTER COMPASS" 
+                FontFamily="Helvetica"
                 FontAttributes="Bold"
                 HorizontalTextAlignment="Center" 
                 TextColor="Black" 

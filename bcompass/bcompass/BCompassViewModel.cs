@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Threading;
 using static System.Net.Mime.MediaTypeNames;
+using Xamarin.Forms;
 
 namespace bcompass
 {
@@ -53,23 +54,53 @@ namespace bcompass
         private double totalDistanceWalked;
         private double distanceFromBB;
 
-        private double _compassRotation;
-        private string _distanceFromBBText;
+        private FormattedString _distanceFromBBText;
         private string _totalWalkedText;
         private string _disclaimerText;
         private string _messageText;
+        private double _messageFontSize;
+        private double _compassRotation;
         private bool _setToMiles = true;
 
         List<Message> messages = new List<Message> {
-                new Message("Test1", 0, 0, 0, -1, ""),
-                new Message("Test2", 0, 0, 0, -1, "1"),
-                new Message("Test3", 0, 0, 0, -1, "2"),
-                new Message("Test4", 0, 0, 0, -1, "3"),
-                new Message("Test5", 0, 0, 0, -1, "4"),
-                new Message("Test6", 0, 0, 0, -1, "5"),
-                new Message("Test7", 0, 0, 0, -1, "6"),
-                new Message("Test8", 0, 0, 0, -1, "7"),
-                new Message("Test9", 0, 0, 0, -1, "8"),
+                new Message("There’s a Blockbuster near you!", 0, 0, 0, -1, ""),
+                new Message("Make it a Blockbuster Hike!", 0, 0, 0, -1, ""),
+                new Message("Go to Blockbuster!", 0, 0, 0, -1, ""),
+                new Message("You should go to Blockbuster!", 0, 0, 0, -1, ""),
+                new Message("Wow, what a difference! Blockbuster Video!", 0, 0, 0, -1, ""),
+                new Message("Make it a Blockbuster Night!", 0, 0, 0, -1, ""),
+                new Message("Blockbuster!!!", 0, 0, 0, -1, ""),
+                new Message("Who loves blockbuster? You do!", 0, 0, 0, -1, ""),
+                new Message("You could always be closer to Blockbuster.",0,0,0,-1,""),
+                new Message("Have you thought about Blockbuster today?",0,0,0,-1,""),
+                new Message("Are you ready for some Blockbuster?",0,0,0,-1,""),
+                new Message("The future is now with Blockbuster Video!",0,0,0,-1,""),
+                new Message("What are movies? find out at Blockbuster!",0,0,0,-1,""),
+                new Message("Movies? Who needs 'em? You do! From Blockbuster!",0,0,0,-1,""),
+                new Message("Looking for a video? Blockbuster has those!",0,0,0,-1,""),
+                new Message("Looking for a video? Blockbuster has it!",0,0,0,-1,""),
+                new Message("Go to Blockbuster now!",0,0,0,-1,""),
+                new Message("Hey! Blockbuster!",0,0,0,-1,""),
+                new Message("Blockbuster? Blockbuster!",0,0,0,-1,""),
+                new Message("Did you know: Blockbuster!!!",0,0,0,-1,""),
+                new Message("We don't track your location, but if you go to Hollywood Video, we'll know.",0,0,0,-1,""),
+                new Message("I have to return some video tapes.",0,0,0,-1,""),
+                new Message("You MUST return your video tapes.",0,0,0,-1,""),
+                new Message("Fun Fact: You can get Movies at your local Blockbuster!",0,0,0,-1,""),
+                new Message("Remember that commercial where the tapes all come to life and hang out at night? That doesn't really happen.",0,0,0,-1,""),
+                new Message("Blockbuster Blockbuster Blockbuster Blockbuster Blockbuster Blockbuster Blockbuster",0,0,0,-1,""),
+                new Message("Go to Blockbuster.",0,0,0,-1,""),
+                new Message("You're {val} Protozoas away! What a Fantastic Voyage!",0,0,0,0.0000000310686,""),
+                new Message("You're {val} Clydesdales away from Blockbuster! Saddle up!",0,0,0,0.001136364,""),
+                new Message("Ello Gov'na! You're the length of {val} Englands away from Blockbuster!",0,0,0,600,""),
+                new Message("You're only {val} Soviet Unions (1962) away, comrade!",0,0,0,6800,""),
+                new Message("Gong Shi! You're {val} Great Walls of China away from your movie night!",0,0,0,13171,""),
+                new Message("Heng ha! You're just {val} Singapores away from Blockbuster!",0,0,0,31,""),
+                new Message("Holy Moly! You're the length of {val} Vatican Cities away from Blockbuster!",0,0,0,0.6,""),
+                new Message("You're {val} Schoolbusses away from Blockbuster! This won't be a normal feild trip!",0,0,0,0.00606061,""),
+                new Message("Watch out for snakes! You're the length of {val} average corn snakes away from Blockbuster!",0,0,0,0.000757576,""),
+                new Message("Beep Beep! You're only {val} car-lengths away from Blockbuster!",0,0,0,0.002784091,""),
+                new Message("There's no rule that says a dog can't go to Blockbuster! you're the length of {val} adult Golden Retrievers away!",0,0,0,0.000662879,""),
         };
 
         public double CompassRotation
@@ -84,7 +115,7 @@ namespace bcompass
                 }
             }
         }
-        public string DistanceFromBBText
+        public FormattedString DistanceFromBBText
         {
             get => _distanceFromBBText;
             set
@@ -116,6 +147,19 @@ namespace bcompass
                 if (_messageText != value)
                 {
                     _messageText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public double MessageFontSize
+        {
+            get => _messageFontSize;
+            set
+            {
+                if (_messageFontSize != value)
+                {
+                    _messageFontSize = value;
                     OnPropertyChanged();
                 }
             }
@@ -159,27 +203,27 @@ namespace bcompass
                 totalDistanceWalked = travelled;
                 if (SetToMiles)
                 {
-                    TotalWalkedText = String.Format("{0:0.#} mi Travelled towards Blockbuster", travelled);
+                    TotalWalkedText = String.Format("{0:f2} MI TRAVELLED", travelled);
                 }
                 else
                 {
-                    TotalWalkedText = String.Format("{0:0.#} km Travelled towards Blockbuster", travelled * KMCONSTANT);
+                    TotalWalkedText = String.Format("{0:f2} KM TRAVELLED", travelled * KMCONSTANT);
                 }
             }
             else
             {
                 if (SetToMiles)
                 {
-                    TotalWalkedText = String.Format("{0:0.#} mi Travelled towards Blockbuster", 1110);
+                    TotalWalkedText = String.Format("{0:f2} MI TRAVELLED", 0);
                 }
                 else
                 {
-                    TotalWalkedText = String.Format("{0:0.#} km Travelled towards Blockbuster", 0111);
+                    TotalWalkedText = String.Format("{0:f2} KM TRAVELLED", 0);
                 }
             }
             double dist = Location.CalculateDistance(currentLocation, BBLOCATION, DistanceUnits.Miles);
-            StartMessageUpdate();
             StartLocationUpdate();
+            StartMessageUpdate();
         }
         
         private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
@@ -227,12 +271,12 @@ namespace bcompass
 
         public async void StartLocationUpdate()
         {
-            await PeriodicLocationUpdate(TimeSpan.FromSeconds(9));
+            await PeriodicLocationUpdate(TimeSpan.FromSeconds(8));
         }
 
         public async void StartMessageUpdate()
         {
-            await PeriodicMessageUpdate(TimeSpan.FromSeconds(15));
+            await PeriodicMessageUpdate(TimeSpan.FromSeconds(9));
         }
 
 
@@ -257,7 +301,6 @@ namespace bcompass
         {
             Random rnd = new Random();
             List<int> availableIndexes = new List<int>();
-            double rarityThreashold = rnd.NextDouble();
 
         CheckAvailability:
             for (int i = 0; i < messages.Count-1; i++)
@@ -265,34 +308,40 @@ namespace bcompass
                 Message m = messages[i];
                 if (!m.Used &&  (m.MinDisplayDistance == 0 && m.MaxDisplayDistance == 0) || (m.MinDisplayDistance <= distanceFromBB && m.MaxDisplayDistance >= distanceFromBB))
                 {
-                    if(m.Rarity > rarityThreashold)
-                    {
-                        availableIndexes.Add(i);
-                    }
+                    availableIndexes.Add(i);
                 }
             }
 
-            if (availableIndexes.Count < 1)
+            if (availableIndexes.Count <= 1)
             {
-                if (rarityThreashold > 0)
+                for (int i = 0; i < messages.Count - 1; i++)
                 {
-                    rarityThreashold -= .2;
-                } 
-                else
-                {
-                    foreach (Message m in messages)
-                    {
-                        m.Used = false;
-                    }
+                    messages[i].Used = false;
                 }
                 goto CheckAvailability;
             }
 
             int index = rnd.Next(availableIndexes.Count);
-            Message msg = messages[index];
 
-            Message = msg.Text.Replace("{val}", (distanceFromBB * msg.UnitMeasurement).ToString());
-            Disclaimer = msg.Disclaimer;
+            // Catch case where Distance-based message is picked before first distance reading is finished
+            if (distanceFromBB == 0 && messages[index].Text.Contains("{val}"))
+            {
+                goto CheckAvailability;
+            }
+            
+            double unitDistances = (distanceFromBB / messages[index].UnitMeasurement);
+
+            if (unitDistances < 1)
+            {
+                Message = messages[index].Text.Replace("{val}", String.Format("{0:g7}", unitDistances));
+            } else if (unitDistances < 1000)
+            {
+                Message = messages[index].Text.Replace("{val}", String.Format("{0:n6}", unitDistances));
+            } else
+            {
+                Message = messages[index].Text.Replace("{val}", String.Format("{0:n0}", unitDistances));
+            }
+            Disclaimer = messages[index].Disclaimer;
             messages[index].Used = true;
         }
 
@@ -312,11 +361,11 @@ namespace bcompass
                         totalDistanceWalked += (distanceFromBB - dist);
                         if (SetToMiles)
                         {
-                            TotalWalkedText = String.Format("{0:0.#} mi Travelled towards Blockbuster", totalDistanceWalked);
+                            TotalWalkedText = String.Format("{0:f2} MI TRAVELLED", totalDistanceWalked);
                         }
                         else
                         {
-                            TotalWalkedText = String.Format("{0:0.#} km Travelled towards Blockbuster", totalDistanceWalked * KMCONSTANT);
+                            TotalWalkedText = String.Format("{0:f2} KM TRAVELLED", totalDistanceWalked * KMCONSTANT);
                         }
                         File.WriteAllText(saveData, totalDistanceWalked.ToString());
                     }
@@ -324,11 +373,11 @@ namespace bcompass
                     distanceFromBB = dist;
                     if (SetToMiles)
                     {
-                        DistanceFromBBText = String.Format("{0:0.##} mi from", dist);
+                        DistanceFromBBText = String.Format("{0:f2} mi from", dist);
                     }
                     else
                     {
-                        DistanceFromBBText = String.Format("{0:0.##} km from", dist * KMCONSTANT);
+                        DistanceFromBBText = String.Format("{0:f2} km from", dist * KMCONSTANT);
                     }
                 }
             }
