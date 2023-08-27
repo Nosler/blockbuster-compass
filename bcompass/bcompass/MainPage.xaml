@@ -108,6 +108,13 @@
                 TextColor="Black" 
                 FontSize="24" 
                 Rotation="-90"/>
+
+            <ImageButton
+                x:Name="Options"
+                WidthRequest="40"
+                HeightRequest="40"
+                CornerRadius="20"
+                Source="options.png" />
         </AbsoluteLayout>
         <SwipeView.BottomItems>
             <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
