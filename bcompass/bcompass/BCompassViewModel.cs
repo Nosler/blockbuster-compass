@@ -17,6 +17,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using static System.Net.Mime.MediaTypeNames;
 using Xamarin.Forms;
+using Xamarin.CommunityToolkit.UI.Views;
 
 namespace bcompass
 {
